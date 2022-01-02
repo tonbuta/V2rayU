@@ -123,6 +123,7 @@ class V2rayConfig: NSObject {
     var streamWs = WsSettings()
     var streamH2 = HttpSettings()
     var streamQuic = QuicSettings()
+    var streamGrpc = GrpcSettings()
     var routing = V2rayRouting()
 
     // tls
@@ -602,6 +603,9 @@ class V2rayConfig: NSObject {
             break
         case .quic:
             streamSettings.quicSettings = self.streamQuic
+            break
+        case .grpc:
+            streamSettings.grpcSettings = self.streamGrpc
             break
         }
 
@@ -1291,6 +1295,10 @@ class V2rayConfig: NSObject {
             if transport.quicSettings != nil {
                 self.streamQuic = transport.quicSettings!
             }
+            
+            if transport.grpcSettings != nil {
+                self.streamGrpc = transport.grpcSettings!
+            }
         }
 
         return (stream)
@@ -1474,7 +1482,15 @@ class V2rayConfig: NSObject {
             }
             stream.quicSettings = quicSettings
         }
+        
+        // quicSettings
+        if steamJson["grpcSettings"].dictionaryValue.count > 0 {
+            var grpcSettings = GrpcSettings()
+            grpcSettings.serviceName = steamJson["grpcSettings"]["serviceName"].stringValue
+            grpcSettings.multiMode = steamJson["grpcSettings"]["multiMode"].boolValue
 
+            stream.grpcSettings = grpcSettings
+        }
         return stream
     }
 

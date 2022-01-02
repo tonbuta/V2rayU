@@ -22,6 +22,9 @@
                 <outlet property="enableMux" destination="fIt-Kc-ZTg" id="5OF-Oo-imA"/>
                 <outlet property="enableUdp" destination="yO9-ma-EEI" id="rM0-RF-O7T"/>
                 <outlet property="errTip" destination="gyE-Zy-64R" id="3zX-d3-ZL0"/>
+                <outlet property="grpcMultiMode" destination="1Nv-jV-hQi" id="a2K-xi-Vbr"/>
+                <outlet property="grpcServiceName" destination="tNS-Pt-Xes" id="jP2-VM-bAV"/>
+                <outlet property="grpcView" destination="S5k-Pk-ewF" id="mWn-vU-vhG"/>
                 <outlet property="h2Host" destination="oNO-uC-5aA" id="Sk9-pP-UP9"/>
                 <outlet property="h2Path" destination="72t-oS-N1H" id="5OL-Xr-CNm"/>
                 <outlet property="h2View" destination="H0M-GA-ZbL" id="o5s-Bb-usn"/>
@@ -1646,6 +1649,41 @@ Gw
                                                                     </button>
                                                                 </subviews>
                                                             </view>
+                                                            <view id="S5k-Pk-ewF" userLabel="grpc">
+                                                                <rect key="frame" x="-1" y="-1" width="360" height="80"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                <subviews>
+                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ko3-3g-58S">
+                                                                        <rect key="frame" x="18" y="48" width="87" height="17"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="serviceName:" id="ld5-xc-Rrm">
+                                                                            <font key="font" metaFont="system"/>
+                                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                        </textFieldCell>
+                                                                    </textField>
+                                                                    <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tNS-Pt-Xes">
+                                                                        <rect key="frame" x="111" y="45" width="229" height="22"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="ugW-R7-Phe">
+                                                                            <font key="font" metaFont="system"/>
+                                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                            <allowedInputSourceLocales>
+                                                                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                                                            </allowedInputSourceLocales>
+                                                                        </textFieldCell>
+                                                                    </textField>
+                                                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Nv-jV-hQi">
+                                                                        <rect key="frame" x="18" y="18" width="86" height="18"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                        <buttonCell key="cell" type="check" title="multiMode" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1UT-a8-y3d">
+                                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                            <font key="font" metaFont="system"/>
+                                                                        </buttonCell>
+                                                                    </button>
+                                                                </subviews>
+                                                            </view>
                                                         </subviews>
                                                     </view>
                                                     <color key="borderColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -1675,6 +1713,9 @@ Gw
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                 </menuItem>
                                                                 <menuItem title="quic" id="YMp-PC-1to">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                </menuItem>
+                                                                <menuItem title="grpc" id="Fog-45-AO6">
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                 </menuItem>
                                                             </items>

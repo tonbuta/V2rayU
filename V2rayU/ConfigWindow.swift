@@ -87,6 +87,7 @@ class ConfigWindowController: NSWindowController, NSWindowDelegate, NSTabViewDel
     @IBOutlet weak var wsView: NSView!
     @IBOutlet weak var h2View: NSView!
     @IBOutlet weak var quicView: NSView!
+    @IBOutlet weak var grpcView: NSView!
 
     @IBOutlet weak var switchNetwork: NSPopUpButton!
 
@@ -113,6 +114,9 @@ class ConfigWindowController: NSWindowController, NSWindowDelegate, NSTabViewDel
     @IBOutlet weak var quicKey: NSTextField!
     @IBOutlet weak var quicSecurity: NSPopUpButton!
     @IBOutlet weak var quicHeaderType: NSPopUpButton!
+    
+    @IBOutlet weak var grpcServiceName: NSTextField!
+    @IBOutlet weak var grpcMultiMode: NSButton!
 
     @IBOutlet weak var streamSecurity: NSPopUpButton!
     @IBOutlet weak var streamAllowSecure: NSButton!
@@ -371,6 +375,10 @@ class ConfigWindowController: NSWindowController, NSWindowDelegate, NSTabViewDel
         if self.quicSecurity.indexOfSelectedItem >= 0 {
             v2rayConfig.streamQuic.security = self.quicSecurity.titleOfSelectedItem!
         }
+        
+        //grpc
+        v2rayConfig.streamGrpc.serviceName = self.grpcServiceName.stringValue
+        v2rayConfig.streamGrpc.multiMode = self.grpcMultiMode.state.rawValue > 0
         // ========================== stream end =======================
     }
 
@@ -479,6 +487,10 @@ class ConfigWindowController: NSWindowController, NSWindowDelegate, NSTabViewDel
         self.quicKey.stringValue = v2rayConfig.streamQuic.key
         self.quicSecurity.selectItem(withTitle: v2rayConfig.streamQuic.security)
         self.quicHeaderType.selectItem(withTitle: v2rayConfig.streamQuic.header.type)
+        
+        //grpc
+        self.grpcServiceName.stringValue = v2rayConfig.streamGrpc.serviceName
+        self.grpcMultiMode.intValue = v2rayConfig.streamGrpc.multiMode ?? false ? 1 : 0
 
         // ========================== stream end =======================
     }
@@ -671,6 +683,9 @@ class ConfigWindowController: NSWindowController, NSWindowDelegate, NSTabViewDel
             break;
         case "quic":
             self.quicView.isHidden = false
+            break;
+        case "grpc":
+            self.grpcView.isHidden = false
             break;
         default: // vmess
             self.tcpView.isHidden = false

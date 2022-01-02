@@ -460,6 +460,8 @@ class VlessUri {
     var host: String = ""
     var sni: String = ""
     var path: String = ""
+    var serviceName: String = ""
+    var mode: String = ""
 
     // vless://f2a5064a-fabb-43ed-a2b6-8ffeb970df7f@00.com:443?flow=xtls-rprx-splite&encryption=none&security=xtls&sni=aaaaa&type=http&host=00.com&path=%2fvl#vless1
     func encode() -> String {
@@ -476,6 +478,8 @@ class VlessUri {
             URLQueryItem(name: "host", value: self.host),
             URLQueryItem(name: "path", value: self.path),
             URLQueryItem(name: "sni", value: self.sni),
+            URLQueryItem(name: "serviceName", value: self.serviceName),
+            URLQueryItem(name: "mode", value: self.mode),
         ]
 
         return (uri.url?.absoluteString ?? "") + "#" + self.remark
@@ -526,6 +530,12 @@ class VlessUri {
                 break
             case "path":
                 self.path = item.value as! String
+                break
+            case "serviceName":
+                self.serviceName = item.value as! String
+                break
+            case "mode":
+                self.mode = item.value as! String
                 break
             default:
                 break

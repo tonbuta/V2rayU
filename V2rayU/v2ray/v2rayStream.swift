@@ -17,6 +17,7 @@ struct V2rayTransport: Codable {
     var dsSettings: DsSettings?
     var quicSettings: QuicSettings?
     var xtlsSettings: XtlsSettings?
+    var grpcSettings: GrpcSettings?
 }
 
 struct V2rayStreamSettings: Codable {
@@ -28,6 +29,7 @@ struct V2rayStreamSettings: Codable {
         case h2
         case domainsocket
         case quic
+        case grpc
     }
 
     enum security: String, Codable {
@@ -47,6 +49,7 @@ struct V2rayStreamSettings: Codable {
     var dsSettings: DsSettings?
     var quicSettings: QuicSettings?
     var xtlsSettings: XtlsSettings?
+    var grpcSettings: GrpcSettings?
 }
 
 struct TlsSettings: Codable {
@@ -192,4 +195,9 @@ var QuicSettingsHeaderType = ["none", "srtp", "utp", "wechat-video", "dtls", "wi
 struct QuicSettingHeader: Codable {
     // QuicSettingsHeaderType
     var type: String = "none"
+}
+
+struct GrpcSettings: Codable {
+    var serviceName: String = ""
+    var multiMode: Bool?
 }

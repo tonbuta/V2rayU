@@ -256,9 +256,16 @@ class ImportUri {
         // stream
         v2ray.streamNetwork = vmess.type
         v2ray.streamTlsSecurity = vmess.security
-        v2ray.streamXtlsServerName = vmess.host
-        if vmess.host.count == 0 {
-            v2ray.streamXtlsServerName = vmess.address
+        if vmess.security == "tls" {
+            v2ray.streamTlsServerName = vmess.host
+            if vmess.host.count == 0 {
+                v2ray.streamTlsServerName = vmess.address
+            }
+        } else {
+            v2ray.streamXtlsServerName = vmess.host
+            if vmess.host.count == 0 {
+                v2ray.streamXtlsServerName = vmess.address
+            }
         }
 
         // kcp
@@ -280,6 +287,10 @@ class ImportUri {
 
         // quic
         v2ray.streamQuic.header.type = vmess.type
+        
+        //grpc
+        v2ray.streamGrpc.serviceName = vmess.serviceName
+        v2ray.streamGrpc.multiMode = vmess.mode == "multi"
 
         // check is valid
         v2ray.checkManualValid()
