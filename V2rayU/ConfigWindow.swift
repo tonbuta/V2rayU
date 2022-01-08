@@ -117,6 +117,7 @@ class ConfigWindowController: NSWindowController, NSWindowDelegate, NSTabViewDel
     
     @IBOutlet weak var grpcServiceName: NSTextField!
     @IBOutlet weak var grpcMultiMode: NSButton!
+    @IBOutlet weak var grpcInitialWindowsSize: NSTextField!
 
     @IBOutlet weak var streamSecurity: NSPopUpButton!
     @IBOutlet weak var streamAllowSecure: NSButton!
@@ -379,6 +380,7 @@ class ConfigWindowController: NSWindowController, NSWindowDelegate, NSTabViewDel
         //grpc
         v2rayConfig.streamGrpc.serviceName = self.grpcServiceName.stringValue
         v2rayConfig.streamGrpc.multiMode = self.grpcMultiMode.state.rawValue > 0
+        v2rayConfig.streamGrpc.initial_windows_size = Int(self.grpcInitialWindowsSize.intValue)
         // ========================== stream end =======================
     }
 
@@ -491,6 +493,7 @@ class ConfigWindowController: NSWindowController, NSWindowDelegate, NSTabViewDel
         //grpc
         self.grpcServiceName.stringValue = v2rayConfig.streamGrpc.serviceName
         self.grpcMultiMode.intValue = v2rayConfig.streamGrpc.multiMode ?? false ? 1 : 0
+        self.grpcInitialWindowsSize.intValue = Int32(v2rayConfig.streamGrpc.initial_windows_size)
 
         // ========================== stream end =======================
     }

@@ -200,4 +200,5 @@ struct QuicSettingHeader: Codable {
 struct GrpcSettings: Codable {
     var serviceName: String = ""
     var multiMode: Bool?
+    var initial_windows_size: Int = 0
 }

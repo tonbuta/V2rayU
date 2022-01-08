@@ -1483,11 +1483,12 @@ class V2rayConfig: NSObject {
             stream.quicSettings = quicSettings
         }
         
-        // quicSettings
+        // grpcSettings
         if steamJson["grpcSettings"].dictionaryValue.count > 0 {
             var grpcSettings = GrpcSettings()
             grpcSettings.serviceName = steamJson["grpcSettings"]["serviceName"].stringValue
             grpcSettings.multiMode = steamJson["grpcSettings"]["multiMode"].boolValue
+            grpcSettings.initial_windows_size = steamJson["grpcSettings"]["initial_windows_size"].intValue
 
             stream.grpcSettings = grpcSettings
         }
